@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Demonstração de Login</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #eef2f7;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .box {
+            background: white;
+            width: 85%;
+            max-width: 350px;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px #0002;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .aviso {
+            background: #fff3cd;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 13px;
+            margin-bottom: 20px;
+        }
+
+        input, textarea, button {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 12px;
+            margin-top: 10px;
+            border-radius: 7px;
+        }
+
+        input, textarea {
+            border: 1px solid #ccc;
+        }
+
+        button {
+            border: 0;
+            background: #2563eb;
+            color: white;
+            font-size: 16px;
+        }
+
+        #resultado {
+            margin-top: 20px;
+            color: #16803c;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="box">
+
+    <h1>Login Demo</h1>
+
+    <div class="aviso">
+        ⚠️ Demonstração. Não coloque senhas ou informações reais.
+    </div>
+
+    <input id="nome" type="text" placeholder="Nome fictício">
+
+    <input id="email" type="email" placeholder="Email fictício">
+
+    <textarea id="mensagem"
+              placeholder="Mensagem de teste"></textarea>
+
+    <button onclick="salvar()">Enviar teste</button>
+
+    <div id="resultado"></div>
+
+</div>
+
+<script>
+
+function salvar() {
+
+    const nome = document.getElementById("nome").value;
+    const email = document.getElementById("email").value;
+    const mensagem = document.getElementById("mensagem").value;
+
+    const dados = {
+        nome: nome,
+        email: email,
+        mensagem: mensagem,
+        horario: new Date().toLocaleString()
+    };
+
+    localStorage.setItem(
+        "ultimo_teste",
+        JSON.stringify(dados)
+    );
+
+    document.getElementById("resultado").innerText =
+        "Dados de demonstração salvos neste aparelho.";
+}
+
+</script>
+
+</body>
+</html>
