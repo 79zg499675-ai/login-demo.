@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Painel de Demonstração</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #eef2f7;
+            padding: 20px;
+        }
+
+        .painel {
+            max-width: 500px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px #0002;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .aviso {
+            background: #fff3cd;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .campo {
+            margin: 15px 0;
+            padding: 12px;
+            background: #f5f5f5;
+            border-radius: 7px;
+        }
+
+        strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            border: 0;
+            border-radius: 7px;
+            background: #dc2626;
+            color: white;
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="painel">
+
+    <h1>📋 Painel</h1>
+
+    <div class="aviso">
+        Demonstração local — somente dados fictícios.
+    </div>
+
+    <div id="dados"></div>
+
+    <button onclick="apagar()">
+        Apagar dados
+    </button>
+
+</div>
+
+<script>
+
+function carregar() {
+
+    const salvo = localStorage.getItem("ultimo_teste");
+
+    if (!salvo) {
+        document.getElementById("dados").innerHTML =
+            "<p>Nenhum teste foi enviado ainda.</p>";
+        return;
+    }
+
+    const dados = JSON.parse(salvo);
+
+    document.getElementById("dados").innerHTML = `
+        <div class="campo">
+            <strong>Nome:</strong>
+            ${dados.nome}
+        </div>
+
+        <div class="campo">
+            <strong>Email:</strong>
+            ${dados.email}
+        </div>
+
+        <div class="campo">
+            <strong>Mensagem:</strong>
+            ${dados.mensagem}
+        </div>
+
+        <div class="campo">
+            <strong>Horário:</strong>
+            ${dados.horario}
+        </div>
+    `;
+}
+
+function apagar() {
+    localStorage.removeItem("ultimo_teste");
+    carregar();
+}
+
+carregar();
+
+</script>
+
+</body>
+</html>
